@@ -45,4 +45,8 @@ public abstract class Animal {
 		return (this.enfants.contains(b));	
 	}
 	
+	boolean seReproduire(Animal a) {
+		return false;
+	}
+	
 }
