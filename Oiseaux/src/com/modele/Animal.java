@@ -1,24 +1,34 @@
 package com.modele;
 
-import java.util.ArrayList;
 import java.util.Date;
 
 public abstract class Animal {
 	//Attributs
 	double dureeDeVie;
-	Date dateDeNaissance; //Sera mis à jour par la méthode implémenté de l'interface reproduction
+	Date dateDeNaissance; //Sera mis a jour par la methode implementee de l'interface reproduction
 	double coordoneeX;  
 	double coordoneeY;
 	Animal pere;
 	Animal mere;
-	Sexe sexe;  //De manière à gérer le sexe aléatoirement par un mathRandom() par la méthode implémenté de l'interface reproduction
+	Sexe sexe;  //De maniere a gÃ©rer le sexe aleatoirement par un mathRandom() par la methode implementee de l'interface reproduction
 	//ArrayList <Animal> enfants;
+	boolean isReproductible;
 	
-	//Méthodes
+	//Methodes
 	
+	public boolean isReproductible() {
+		return isReproductible;
+	}
+
+	public void setReproductible(boolean isReproductible) {
+		this.isReproductible = isReproductible;
+	}
+
 	abstract void deplacement();
 	
 	abstract double calculDureeDeVie();
+	
+	abstract boolean seReproduire(Animal a);
 	
 	
 	
