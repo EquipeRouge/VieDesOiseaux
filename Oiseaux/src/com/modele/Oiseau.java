@@ -17,9 +17,9 @@ public class Oiseau extends Animal {
 		
 		this.coordoneeX = (int)(Math.random() * (HIGHER-LOWER)) + LOWER;
 		this.coordoneeY = (int)(Math.random() * (HIGHER-LOWER)) + LOWER;
-		this.newCoordonneeX = (int)(Math.random() * (HIGHER-LOWER)) + LOWER;
-		this.newCoordonneeY = (int)(Math.random() * (HIGHER-LOWER)) + LOWER;
-		this.vitesse = 1;
+//		this.newCoordonneeX = (int)(Math.random() * (HIGHER-LOWER)) + LOWER;
+//		this.newCoordonneeY = (int)(Math.random() * (HIGHER-LOWER)) + LOWER;
+//		this.vitesse = 1;
 		
 	}
 
@@ -34,8 +34,8 @@ public class Oiseau extends Animal {
 		return dureeDeVie;
 	}
 
-	boolean seReproduire(Animal a) {
-		return ((this.isReproductible()) && (a.isReproductible()));
-
-	}
+//	boolean seReproduire(Animal a) {
+//		return ((this.isReproductible()) && (a.isReproductible()));
+//
+//	}
 }
