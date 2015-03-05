@@ -9,8 +9,11 @@ public abstract class Animal {
 	Date dateDeNaissance; //Sera mis à jour par la méthode implémenté de l'interface reproduction
 	double coordoneeX;  
 	double coordoneeY;
+	double newCoordonneeX;
+	double newCoordonneeY;
 	Animal pere;
 	Animal mere;
+	int vitesse;
 	Sexe sexe;  //De manière à gérer le sexe aléatoirement par un mathRandom() par la méthode implémenté de l'interface reproduction
 	//ArrayList <Animal> enfants;
 	
