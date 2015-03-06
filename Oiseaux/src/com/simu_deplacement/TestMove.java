@@ -1,4 +1,4 @@
-package com.deplacement;
+package com.simu_deplacement;
 
 import java.awt.Color;
 import java.awt.Dimension;
