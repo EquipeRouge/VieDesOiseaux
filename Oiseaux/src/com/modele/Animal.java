@@ -10,6 +10,9 @@ public abstract class Animal {
 	Date dateDeNaissance; //Sera mis � jour par la m�thode impl�ment� de l'interface reproduction
 	double coordoneeX;  
 	double coordoneeY;
+	double newCoordonneeX;
+	double newCoordonneeY;
+	int vitesse;
 	
 	Animal pere;
 	Animal mere;
