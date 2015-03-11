@@ -1,10 +1,10 @@
 package com.ressources;
-import com.modele.Oiseau;
+import com.modele.*;
 
 public class Parents {
 	
-	Oiseau pere;
-	Oiseau mere;
+	Animal pere;
+	Animal mere;
 	boolean vide;
 	
 	// Constructeurs
@@ -15,7 +15,7 @@ public class Parents {
 		this.vide=true;
 	}
 	
-	private Parents(Oiseau pere, Oiseau mere) {
+	private Parents(Animal pere, Animal mere) {
 		this.pere = pere;
 		this.mere = mere;
 		this.vide = false;
@@ -23,11 +23,11 @@ public class Parents {
 	
 	// Getter et Setter
 	
-	public Oiseau getPere() {
+	public Animal getPere() {
 		return pere;
 	}
 
-	public Oiseau getMere() {
+	public Animal getMere() {
 		return mere;
 	}
 
@@ -37,12 +37,11 @@ public class Parents {
 
 	// Méthodes
 	
-	public static Parents addParents(Oiseau pere, Oiseau mere){
+	public static Parents addParents(Animal pere, Animal mere){
 		
 		if (pere == null || mere == null) {  // Si seulement l'un des deux est null c'est impossible !!!
 			return new Parents();
 		}
-		
 		return new Parents(pere, mere);
 	}
 	
