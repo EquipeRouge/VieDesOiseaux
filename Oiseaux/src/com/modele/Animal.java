@@ -24,6 +24,8 @@ public abstract class Animal {
 	int vitesse;
 	Parents parents;
 	
+	boolean isReproductible=false;
+	
 	List<Animal> enfants;
 	
 	Sexe sexe; 
