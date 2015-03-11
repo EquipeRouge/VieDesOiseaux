@@ -4,8 +4,7 @@ import java.util.Random;
 
 public enum Sexe {
 	MALE,
-	FEMELLE,
-	HERMAPHRODITE;
+	FEMELLE;
 
 	public static Random generateurDeSexe = new Random();
 	

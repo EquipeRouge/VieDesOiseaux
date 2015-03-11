@@ -1,27 +1,22 @@
 package com.modele;
 
-public class Mort extends Animal{
+public class Mort extends Oiseau implements Statut{
 
 	public Mort() {
 		// TODO Stub du constructeur généré automatiquement
 	}
 
-	@Override
-	void deplacement() {
-		// TODO Stub de la méthode généré automatiquement
+	public void deplacement() {
+		super.deplacement();
+		this.vitesse = VITESSE_MIN;
 		
 	}
 
-	@Override
-	double calculDureeDeVie() {
-		// TODO Stub de la méthode généré automatiquement
-		return 0;
-	}
-
-	@Override
-	boolean seReproduire(Animal a) {
-		// TODO Stub de la méthode généré automatiquement
+	public boolean seReproduire(Animal a) {
+		// TODO Auto-generated method stub
 		return false;
 	}
+
+	
 
 }

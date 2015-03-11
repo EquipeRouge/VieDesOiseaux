@@ -1,14 +1,11 @@
 package com.modele;
 
-public abstract class Statut {
-	String nom;
+public interface Statut {
 	
-	public Statut(String n) {
-		nom = n;
-	}
-
-
-	public abstract void afficherStatut();
+	
+	void deplacement();
+	
+	boolean seReproduire(Animal a);
 		
 	
 }

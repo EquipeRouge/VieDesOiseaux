@@ -1,27 +1,21 @@
 package com.modele;
 
-public class Oeuf extends Animal {
+public class Oeuf extends Oiseau implements Statut {
 
 	public Oeuf() {
 		// TODO Stub du constructeur généré automatiquement
 	}
 
-	@Override
-	void deplacement() {
-		// TODO Stub de la méthode généré automatiquement
+	public void deplacement() {
+		super.deplacement();
+		this.vitesse = VITESSE_MIN;
 		
 	}
 
-	@Override
-	double calculDureeDeVie() {
-		// TODO Stub de la méthode généré automatiquement
-		return 0;
-	}
-
-	@Override
-	boolean seReproduire(Animal a) {
-		// TODO Stub de la méthode généré automatiquement
+	public boolean seReproduire(Animal a) {
 		return false;
 	}
+
+	
 
 }
