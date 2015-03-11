@@ -72,9 +72,9 @@ public abstract class Animal {
 //	public boolean isBrother(Animal b){
 //		return (this.enfants.contains(b));	
 //	}
-//	
-//	boolean seReproduire(Animal a) {
-//		return false;
-//	}
+	
+	abstract List<Animal> seReproduire(Animal a);
+	
+	
 	
 }
