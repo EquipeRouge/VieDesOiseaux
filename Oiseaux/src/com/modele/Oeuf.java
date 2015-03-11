@@ -8,8 +8,7 @@ public class Oeuf extends Oiseau implements Statut {
 
 	public void deplacement() {
 		super.deplacement();
-		this.vitesse = VITESSE_MIN;
-		
+		this.vitesse = VITESSE_MIN;	
 	}
 
 	public boolean seReproduire(Animal a) {

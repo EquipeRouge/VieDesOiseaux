@@ -3,7 +3,7 @@ package com.modele;
 import java.util.*;
 import java.util.Date;
 
-import com.ressources.Parents;
+import com.ressources.*;
 
 public abstract class Animal {
 	
@@ -22,9 +22,9 @@ public abstract class Animal {
 	double newCoordonneeX;
 	double newCoordonneeY;
 	int vitesse;
-	Parents parents;
+	Famille famille;
 	
-	boolean isReproductible=false;
+	boolean isReproductible = false;
 	
 	List<Animal> enfants;
 	
@@ -51,30 +51,5 @@ public abstract class Animal {
 		}
 		return Sexe.MALE;
 	}
-	
-//	protected boolean isParents(Animal b){
-//		return (this.pere == b || this.mere == b);	
-//	}
-//	
-//	protected void setParents(Animal papa, Animal maman){
-//		this.pere = papa;
-//		this.mere= maman;
-//	}
-//	
-//	protected void setChildren(Animal a){
-//		this.enfants.add(a);
-//	}
-//	
-//	public boolean isChild(Animal b){
-//		return (this.enfants.contains(b));	
-//	}
-//	
-//	public boolean isBrother(Animal b){
-//		return (this.enfants.contains(b));	
-//	}
-//	
-//	boolean seReproduire(Animal a) {
-//		return false;
-//	}
 	
 }

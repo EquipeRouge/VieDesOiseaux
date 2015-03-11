@@ -13,14 +13,14 @@ public class Oiseau extends Animal {
 	Oiseau(){
 		this.sexe = this.setSexe();
 		this.dureeDeVie = this.calculDureeDeVie();
-		this.parents = Parents.addParents(null, null);
+		this.famille = new Famille();
 		this.statut = new Oeuf();
 	}
 	
-	Oiseau(Oiseau pere, Oiseau mere){
+	Oiseau(Famille pere, Famille mere){
 		this.sexe = this.setSexe();
 		this.dureeDeVie = this.calculDureeDeVie();
-		this.parents = Parents.addParents(pere, mere);
+		this.famille = new Famille(this,pere, mere);
 		this.statut = new Oeuf();	
 	}
 
@@ -28,12 +28,4 @@ public class Oiseau extends Animal {
 		super.deplacement();
 	};
 	
-	// Méthodes
-
-	
-
-//	boolean seReproduire(Animal a) {
-//		return ((this.isReproductible()) && (a.isReproductible()));
-//
-//	}
 }
