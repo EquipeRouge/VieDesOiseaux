@@ -68,7 +68,7 @@ class ScreenAWT extends JFrame {
 			comp.add(pointF);
 
 			for (int i = 1; i <= duree; i++) {
-				point.deplacer();
+				point.deplacer(10);
 				System.out.println(point.getxInit() + "= x");
 				System.out.println(point.getyInit() + "= y");
 				System.out.println(point.getxFinal() + "= xFinal");

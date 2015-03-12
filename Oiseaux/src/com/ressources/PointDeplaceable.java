@@ -12,7 +12,7 @@ public class PointDeplaceable extends JPanel {
 	private static final int XSIZE = 10;
 	
 	private static final int YSIZE = 10;
-	
+		
 	double xInit;
 	double yInit;
 	
@@ -30,50 +30,64 @@ public class PointDeplaceable extends JPanel {
 	}
 
 	
-	public void deplacer(){
+	public void deplacer(double temps){
+		double vitesse = this.vitesse;
 		if ((xFinal > xInit) && (yFinal > yInit)){
-			xInit = xInit + (((xFinal - xInit) / (yFinal - yInit) ) * vitesse);
-			yInit = yInit + (((yFinal - yInit) / (xFinal - xInit) ) * vitesse);
+			double distance = calculDistance(temps, vitesse);
+			double distanceTotale = calculDistanceTotale(xInit, xFinal, yInit, yFinal);
+			double ratio = calculRatio(distance, distanceTotale);
 			
+			xInit = xInit + calculIncrementation(ratio, xInit, xFinal);
+			yInit = yInit + calculIncrementation(ratio, yInit, yFinal);
+						
 			if ((xInit >= xFinal) || (yInit >= yFinal)){
-//				x = xFinal;
-//				y = yFinal;
-				
-				xFinal = (double)(Math.random() *750);
-				yFinal = (double)(Math.random() *550);
+				xFinal = newCoordonnee(750);
+				yFinal = newCoordonnee(550);
 			}
 		}
 		
 		else if ((xFinal <= xInit) && (yFinal <= yInit)){
-			xInit = xInit - (((xFinal - xInit) / (yFinal - yInit) ) * vitesse);
-			yInit = yInit - (((yFinal - yInit) / (xFinal - xInit) ) * vitesse);
+			double distance = calculDistance(temps, vitesse);
+			double distanceTotale = calculDistanceTotale(xInit, xFinal, yInit, yFinal);
+			double ratio = calculRatio(distance, distanceTotale);
+			
+			xInit = xInit + calculIncrementation(ratio, xInit, xFinal);
+			yInit = yInit + calculIncrementation(ratio, yInit, yFinal);
 			
 			if ((xInit <= xFinal) || (yInit <= yFinal)){
 				
-				xFinal = (double)(Math.random() *750);
-				yFinal = (double)(Math.random() *550);
+				xFinal = newCoordonnee(750);
+				yFinal = newCoordonnee(550);
 			}
 		}
 		
 		if ((xFinal <= xInit) && (yFinal > yInit)){
-			xInit = xInit + (((xFinal - xInit) / (yFinal - yInit) ) * vitesse);
-			yInit = yInit - (((yFinal - yInit) / (xFinal - xInit) ) * vitesse);
+			double distance = calculDistance(temps, vitesse);
+			double distanceTotale = calculDistanceTotale(xInit, xFinal, yInit, yFinal);
+			double ratio = calculRatio(distance, distanceTotale);
+			
+			xInit = xInit + calculIncrementation(ratio, xInit, xFinal);
+			yInit = yInit + calculIncrementation(ratio, yInit, yFinal);
 			
 			if ((xInit <= xFinal) || (yInit > yFinal)){
 				
-				xFinal = (double)(Math.random() *750);
-				yFinal = (double)(Math.random() *550);
+				xFinal = newCoordonnee(750);
+				yFinal = newCoordonnee(550);
 			}
 		}
 		
 		else if ((xFinal > xInit) && (yFinal <= yInit)){
-			xInit = xInit - (((xFinal - xInit) / (yFinal - yInit) ) * vitesse);
-			yInit = yInit + (((yFinal - yInit) / (xFinal - xInit) ) * vitesse);
+			double distance = calculDistance(temps, vitesse);
+			double distanceTotale = calculDistanceTotale(xInit, xFinal, yInit, yFinal);
+			double ratio = calculRatio(distance, distanceTotale);
+			
+			xInit = xInit + calculIncrementation(ratio, xInit, xFinal);
+			yInit = yInit + calculIncrementation(ratio, yInit, yFinal);
 			
 			if ((xInit > xFinal) || (yInit <= yFinal)){
 				
-				xFinal = (double)(Math.random() *750);
-				yFinal = (double)(Math.random() *550);
+				xFinal = newCoordonnee(750);
+				yFinal = newCoordonnee(550);
 			}
 		}
 		
@@ -111,6 +125,26 @@ public class PointDeplaceable extends JPanel {
 
 	public Ellipse2D getForme() {
 		return new Ellipse2D.Double(xInit, yInit, XSIZE, YSIZE);
+	}
+	
+	public double calculDistance(double temps, double vitesse){
+		return temps*vitesse;
+	}
+	
+	public double calculDistanceTotale(double xInit, double xFinal, double yInit, double yFinal){
+		return Math.sqrt(((xInit-xFinal)*(xInit-xFinal))+((yInit-yFinal)*(yInit-yFinal)));
+	}
+	
+	public double calculRatio (double distance, double distanceTotale){
+		return distance/distanceTotale;
+	}
+	
+	public double calculIncrementation(double ratio, double dpt, double arv){
+		return (ratio*(arv-dpt));
+	}
+	
+	public double newCoordonnee(int max){
+		return Math.random()*max;
 	}
 	
 	
