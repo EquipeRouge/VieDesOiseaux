@@ -1,5 +1,6 @@
 package com.modele;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -31,36 +32,26 @@ public class Adulte implements Statut {
 		return true;
 	}
 
-	// @Override
-	// protected Animal faireEnfant(Animal a)
-	// {
-	// return new Oiseau(this,(Oiseau)a);
-	// }
-
 	public List<Animal> seReproduire(Animal a) {
 		if (!isReproductionOK(a)) {
 			throw new IllegalArgumentException("je peux pas dsl");
 		}
 
 		Random generateur = new Random();
-		int rand = generateur.nextInt(this.oiseau.getMaxOeufs());
+		List<Animal> oeufs = new ArrayList<Animal>();
+
+		int rand = generateur.nextInt(this.oiseau.getMaxOeufs() - 1);
+		rand++;
 		for (int i = 0; i < rand; i++) {
-			// enfants.add(faireEnfant(a));
-			oiseau.oeufs.add(new Oiseau(this.oiseau, (Oiseau) a));
+			oeufs.add(new Oiseau(this.oiseau, (Oiseau) a));
 		}
-		return oiseau.oeufs;
+		return oeufs;
 	}
 
-	//Méthode permettant de gérer le passage à mort
+	// Méthode permettant de gérer le passage à mort
 	public void grandir(boolean vivre) {
-		if (vivre){
 		oiseau.setStatut(new Mort(oiseau));
-		}
-	}	
-	
-	 //Test sur le satut
-	 public String toString(){
-	 return "adulte";
-	 }
+
+	}
 
 }

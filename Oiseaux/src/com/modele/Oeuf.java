@@ -11,37 +11,40 @@ public class Oeuf implements Statut {
 		this.oiseau = pOiseau;
 	}
 
-	public void deplacement() {
-<<<<<<< HEAD
-		deplacement();
-=======
-		super.deplacement();
-		this.vitesse = VITESSE_MIN;	
->>>>>>> refs/remotes/origin/dev
+	public Oiseau getOiseau() {
+		return oiseau;
 	}
-	
+
+	public void setOiseau(Oiseau oiseau) {
+		this.oiseau = oiseau;
+	}
+
+	public void deplacement() {
+
+		deplacement();
+
+		oiseau.deplacement();
+		this.oiseau.vitesse = oiseau.VITESSE_MIN;
+
+	}
+
 	public boolean isReproductionOK(Animal a) {
-		// TODO Stub de la méthode généré automatiquement
+
 		return false;
 	}
 
 	public List<Animal> seReproduire(Animal a) {
-		// TODO Stub de la méthode généré automatiquement
+
 		return null;
 	}
 
-	//Méthode permettant de gérer l'éclosion
+	// Méthode permettant de gérer l'éclosion
 	public void grandir(boolean vivre) {
-		if (vivre){
-		oiseau.setStatut(new Poussin(oiseau));
-		}else{
+		if (vivre) {
+			oiseau.setStatut(new Poussin(oiseau));
+		} else {
 			oiseau.setStatut(new Mort(oiseau));
 		}
 	}
-
-	// Test sur le satut
-	 public String toString(){
-	 return "oeuf";
-	 }
 
 }

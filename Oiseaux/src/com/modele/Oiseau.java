@@ -1,48 +1,45 @@
 package com.modele;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
-import com.ressources.*;
+import com.ressources.Famille;
 
 public class Oiseau extends Animal {
 
 	private static final int MAX_OEUFS = 5;
+	static final int VITESSE_MIN = 5;
 
 	Statut statut;
-	List<Animal> oeufs;
+
+	Sexe getSex() {
+		return sexe;
+	}
 
 	{ // commun aux constructeurs
 		this.sexe = this.setSexe();
 		this.dureeDeVie = this.calculDureeDeVie();
-<<<<<<< HEAD
+
 		this.age = 0;
 		this.statut = new Oeuf(this);
 	}
 
 	// Constructeur
 	public Oiseau() {
-
-		this.parents = Parents.addParents(null, null);
-=======
 		this.famille = new Famille();
-		this.statut = new Oeuf();
->>>>>>> refs/remotes/origin/dev
+		this.statut = new Oeuf(this);
+
 	}
-<<<<<<< HEAD
 
-	public Oiseau(Oiseau pere, Oiseau mere) {
+	Oiseau(Oiseau pere, Oiseau mere) {
 
-		this.parents = Parents.addParents(pere, mere);
-=======
-	
-	Oiseau(Famille pere, Famille mere){
+	}
+
+	Oiseau(Famille pere, Famille mere) {
 		this.sexe = this.setSexe();
 		this.dureeDeVie = this.calculDureeDeVie();
-		this.famille = new Famille(this,pere, mere);
-		this.statut = new Oeuf();	
->>>>>>> refs/remotes/origin/dev
+		this.famille = new Famille(this, pere, mere);
+		this.statut = new Oeuf(this);
+
 	}
 
 	public void showStatut() {
@@ -71,12 +68,16 @@ public class Oiseau extends Animal {
 	// }
 	void deplacement() {
 		super.deplacement();
-<<<<<<< HEAD
+
+	}
+
+	boolean isSexeOk(final Animal unAnimal) {
+		return this.sexe != unAnimal.sexe;
 	}
 
 	// En attente création méthode isInceste pour finaliser
 	boolean isReproductionOK(Animal a) {
-		if (this.sexe == a.sexe)
+		if (!isSexeOk(a))
 			return false;
 		// if ( ! this.isInceste(a) ) return false;
 		if (!this.isReproductible)
@@ -86,33 +87,15 @@ public class Oiseau extends Animal {
 		return true;
 	}
 
-	// @Override
-	// protected Animal pondre(Animal a)
-	// {
-	// return new Oiseau(this,(Oiseau)a);
-	// }
-
 	protected List<Animal> seReproduire(Animal a) {
-		if (!isReproductionOK(a)) {
-			throw new IllegalArgumentException("je peux pas dsl");
-		}
 
-		Random generateur = new Random();
-		int rand = generateur.nextInt(MAX_OEUFS);
-		for (int i = 0; i < rand; i++) {
-			// enfants.add(pondre(a));
-			oeufs.add(new Oiseau(this, (Oiseau) a));
-		}
-		return oeufs;
+		return statut.seReproduire(a);
 	}
 
 	public void faireEvoluer() {
 		while (this.age < this.dureeDeVie) {
 
 			switch (this.age) {
-			case 0:
-				this.grandir(true);
-				break;
 			case 2:
 				this.grandir(true);
 				break;
@@ -122,25 +105,12 @@ public class Oiseau extends Animal {
 			case 20:
 				this.grandir(true);
 				break;
-			default:
-				this.grandir(false);
 			}
-
-			// if(this.age==2){
-			// papa.grandir(true);
-			// }else if(age==4){
-			// papa.grandir(true);
-			//
-			// }
-
 			this.showStatut();
 			age++;
-		} // while
+		}
 		this.grandir(false);
 		this.showStatut();
-	} // void
-=======
-	};
-	
->>>>>>> refs/remotes/origin/dev
+	}
+
 }

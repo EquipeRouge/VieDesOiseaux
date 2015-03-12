@@ -8,30 +8,26 @@ public class Mort implements Statut {
 
 	public Mort(Oiseau pOiseau) {
 		this.oiseau = pOiseau;
-	}
+		oiseau.isReproductible = false;
 
-	// public boolean isReproductionOK(Animal a) {
-	// return false;
-	// }
+	}
 
 	public void deplacement() {
 	}
 
 	public boolean isReproductionOK(Animal a) {
-		// TODO Stub de la méthode généré automatiquement
+
 		return false;
 	}
 
 	public List<Animal> seReproduire(Animal a) {
-		// TODO Stub de la méthode généré automatiquement
+
 		return null;
 	}
 
 	public void grandir(boolean vivre) {
+		if (!vivre)
+			oiseau.setStatut(new Mort(oiseau));
 	}
-	// Test sur le satut
-	 public String toString(){
-	 return "mort";
-	 }
 
 }
