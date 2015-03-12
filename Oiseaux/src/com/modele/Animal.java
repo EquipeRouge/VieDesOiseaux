@@ -1,7 +1,6 @@
 package com.modele;
 
 import java.util.*;
-import java.util.Date;
 
 import com.ressources.Parents;
 
@@ -15,8 +14,9 @@ public abstract class Animal {
 	
 	
 	//Attributs
-	double dureeDeVie;
-	Date dateDeNaissance; //Sera mis � jour par la m�thode impl�ment� de l'interface reproduction
+	public int dureeDeVie;
+	public int age;
+	Date dateDeNaissance; 
 	double coordoneeX;  
 	double coordoneeY;
 	double newCoordonneeX;
@@ -25,8 +25,6 @@ public abstract class Animal {
 	Parents parents;
 	
 	boolean isReproductible=false;
-	
-	List<Animal> enfants;
 	
 	Sexe sexe; 
 	
@@ -40,8 +38,8 @@ public abstract class Animal {
 		this.newCoordonneeY = (int)(Math.random() * (HIGHER-LOWER)) + LOWER;
 	 };
 
-	protected double  calculDureeDeVie() {
-		dureeDeVie = (double) (Math.random() * (DUREE_DE_VIE_MAX - DUREE_DE_VIE_MIN)) + DUREE_DE_VIE_MIN;
+	protected int  calculDureeDeVie() {
+		dureeDeVie = (int) ((Math.random() * (DUREE_DE_VIE_MAX - DUREE_DE_VIE_MIN)) + DUREE_DE_VIE_MIN);
 		return dureeDeVie;
 	}
 	
