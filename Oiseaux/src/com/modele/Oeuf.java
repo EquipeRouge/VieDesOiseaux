@@ -5,7 +5,9 @@ import java.util.List;
 public class Oeuf implements Statut {
 
 	final static int VITESSE_MAX = 0;
-	Oiseau oiseau;
+	
+	private Oiseau oiseau;
+
 
 	public Oeuf(Oiseau pOiseau) {
 		this.oiseau = pOiseau;
@@ -19,14 +21,6 @@ public class Oeuf implements Statut {
 		this.oiseau = oiseau;
 	}
 
-	public void deplacement() {
-
-		deplacement();
-
-		oiseau.deplacement();
-		this.oiseau.vitesse = oiseau.VITESSE_MIN;
-
-	}
 
 	public boolean isReproductionOK(Animal a) {
 

@@ -3,19 +3,13 @@ package com.modele;
 import java.util.List;
 
 public class Poussin implements Statut {
-	final static int VITESSE_MOY = 5;
-	double vitesse;
+	final static int VITESSE_MOY = 2;
 	Oiseau oiseau;
 
 	public Poussin(Oiseau pOiseau) {
 		this.oiseau = pOiseau;
 	}
 
-	public void deplacement() {
-		deplacement();
-		this.vitesse = VITESSE_MOY;
-
-	}
 
 	public boolean isReproductionOK(Animal a) {
 

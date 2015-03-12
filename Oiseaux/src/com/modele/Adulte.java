@@ -6,19 +6,13 @@ import java.util.Random;
 
 public class Adulte implements Statut {
 
-	double vitesse;
-	final static int VITESSE_MAX = 10;
+	final static int VITESSE_MAX = 5;
 	Oiseau oiseau;
 
 	public Adulte(Oiseau pOiseau) {
 		this.oiseau = pOiseau;
 	}
 
-	public void deplacement() {
-		deplacement();
-		this.vitesse = VITESSE_MAX;
-
-	}
 
 	// En attente création méthode isInceste pour finaliser
 	public boolean isReproductionOK(Animal a) {

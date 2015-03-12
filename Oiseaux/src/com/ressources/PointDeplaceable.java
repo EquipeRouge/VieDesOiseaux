@@ -19,7 +19,7 @@ public class PointDeplaceable extends JPanel {
 	double xFinal;
 	double yFinal;
 	
-	int vitesse = 1; 
+	public int vitesse = 2; 
 	
 	public PointDeplaceable(int depX, int depY, int arvX, int arvY ){
 		xInit = depX;
@@ -31,7 +31,7 @@ public class PointDeplaceable extends JPanel {
 
 	
 	public void deplacer(double temps){
-		double vitesse = this.vitesse;
+		
 		if ((xFinal > xInit) && (yFinal > yInit)){
 			double distance = calculDistance(temps, vitesse);
 			double distanceTotale = calculDistanceTotale(xInit, xFinal, yInit, yFinal);
@@ -127,23 +127,23 @@ public class PointDeplaceable extends JPanel {
 		return new Ellipse2D.Double(xInit, yInit, XSIZE, YSIZE);
 	}
 	
-	public double calculDistance(double temps, double vitesse){
+	public static double calculDistance(double temps, double vitesse){
 		return temps*vitesse;
 	}
 	
-	public double calculDistanceTotale(double xInit, double xFinal, double yInit, double yFinal){
+	public static double calculDistanceTotale(double xInit, double xFinal, double yInit, double yFinal){
 		return Math.sqrt(((xInit-xFinal)*(xInit-xFinal))+((yInit-yFinal)*(yInit-yFinal)));
 	}
 	
-	public double calculRatio (double distance, double distanceTotale){
+	public static double calculRatio (double distance, double distanceTotale){
 		return distance/distanceTotale;
 	}
 	
-	public double calculIncrementation(double ratio, double dpt, double arv){
+	public static double calculIncrementation(double ratio, double dpt, double arv){
 		return (ratio*(arv-dpt));
 	}
 	
-	public double newCoordonnee(int max){
+	public static double newCoordonnee(int max){
 		return Math.random()*max;
 	}
 	

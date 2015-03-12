@@ -3,11 +3,14 @@ package com.modele;
 import java.util.List;
 
 import com.ressources.Famille;
+import com.ressources.PointDeplaceable;
 
 public class Oiseau extends Animal {
 
 	private static final int MAX_OEUFS = 5;
-	static final int VITESSE_MIN = 5;
+	final static int VITESSE_MIN = 0;
+	final static int VITESSE_MOY = 1;
+	final static int VITESSE_MAX = 2;
 
 	Statut statut;
 
@@ -21,14 +24,18 @@ public class Oiseau extends Animal {
 
 		this.age = 0;
 		this.statut = new Oeuf(this);
+		
 	}
 
 	// Constructeur
 	public Oiseau() {
 		this.famille = new Famille();
 		this.statut = new Oeuf(this);
+		sonCorps = new PointDeplaceable(xInit, yInit, xFinal, yFinal);
 
 	}
+	
+
 
 	Oiseau(Oiseau pere, Oiseau mere) {
 
@@ -41,6 +48,7 @@ public class Oiseau extends Animal {
 		this.statut = new Oeuf(this);
 
 	}
+
 
 	public void showStatut() {
 		System.out.println(this.statut);
@@ -62,13 +70,16 @@ public class Oiseau extends Animal {
 		statut.grandir(vivre);
 	}
 
-	// Voir avec équipe déplacement
-	// public void deplacer(){
-	// statut.deplacer();
-	// }
-	void deplacement() {
-		super.deplacement();
-
+	public void definirVitesse(){
+		if((this.statut instanceof Oeuf) || (this.statut instanceof Mort)){
+			this.sonCorps.vitesse = VITESSE_MIN;
+		}
+		else if (this.statut instanceof Poussin){
+			this.sonCorps.vitesse = VITESSE_MOY;
+		}
+		else{
+			this.sonCorps.vitesse = VITESSE_MAX;
+		}
 	}
 
 	boolean isSexeOk(final Animal unAnimal) {
@@ -92,25 +103,44 @@ public class Oiseau extends Animal {
 		return statut.seReproduire(a);
 	}
 
+//	public void faireEvoluer() {
+//		while (this.age < this.dureeDeVie) {
+//
+//			switch (this.age) {
+//			case 30:
+//				this.grandir(true);
+//				break;
+//			case 120:
+//				this.grandir(true);
+//				break;
+//			case 180:
+//				this.grandir(true);
+//				break;
+//			}
+//			this.showStatut();
+//			age++;
+//		}
+//		this.grandir(false);
+//		this.showStatut();
+//	}
+	
 	public void faireEvoluer() {
-		while (this.age < this.dureeDeVie) {
+		if (this.age < this.dureeDeVie) {
 
-			switch (this.age) {
-			case 2:
+			if(this.age == 40) 
 				this.grandir(true);
-				break;
-			case 4:
+			if(this.age == 120)
 				this.grandir(true);
-				break;
-			case 20:
+			if(this.age == 180)
 				this.grandir(true);
-				break;
-			}
 			this.showStatut();
 			age++;
 		}
-		this.grandir(false);
-		this.showStatut();
-	}
-
+		else{
+			this.grandir(false);
+			this.showStatut();
+		}
+}
+	
+	
 }

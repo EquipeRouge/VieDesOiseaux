@@ -13,20 +13,25 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import com.modele.Oiseau;
 import com.ressources.PointDeplaceable;
 
-class ScreenAWT extends JFrame {
+public class ScreenAWT extends JFrame {
 	
 	private static final long serialVersionUID = 1L;
 	public static final int DELAY = 30;
 	
 	public static int screenX= 600;
 	public static int screenY = 800;
-	public int duree = 800;
+	public static int dureeJeu = 4000;
 	
 	private ComposantDeplacement comp;
 	
+	public ArrayList<Oiseau> sesOiseaux;
+	
 	public ScreenAWT(){
+		
+		sesOiseaux = new ArrayList<Oiseau>();
 		
 		comp = new ComposantDeplacement();
 		
@@ -42,6 +47,7 @@ class ScreenAWT extends JFrame {
 		this.setResizable(false);
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
+
 	}
 	
 	public void addButton(Container c, String title, ActionListener listener) {
@@ -52,33 +58,58 @@ class ScreenAWT extends JFrame {
 	
 	ActionListener demarrer = new ActionListener() {
 		public void actionPerformed(ActionEvent event) {
-			addBird();
+			debuterMouvement();
 		}
 	};
 	
 	
 	
-	public void addBird() {
-		try {
-			PointDeplaceable point = new PointDeplaceable(20, 20, 100, 200);
-			PointDeplaceable point2 = new PointDeplaceable(20, 20, 20, 20);
-			PointDeplaceable pointF = new PointDeplaceable(500, 300, 500, 300);
-			comp.add(point);
-			comp.add(point2);
-			comp.add(pointF);
-
-			for (int i = 1; i <= duree; i++) {
-				point.deplacer(10);
-				System.out.println(point.getxInit() + "= x");
-				System.out.println(point.getyInit() + "= y");
-				System.out.println(point.getxFinal() + "= xFinal");
-				System.out.println(point.getyFinal() + "= yFinal");
+//	public void debuterMouvement() {
+//		for (int i = 0; i < sesOiseaux.size(); i++){
+//			try {
+//				comp.add(this.sesOiseaux.get(i).sonCorps);
+//	
+//				this.sesOiseaux.get(i).faireEvoluer();
+//				for (int j = 1; j <= this.sesOiseaux.get(i).dureeDeVie; j++) {
+//					sesOiseaux.get(i).sonCorps.deplacer(sesOiseaux.get(i).vitesse);
+//
+//					System.out.println(sesOiseaux.get(i).sonCorps.getxInit() + "= x");
+//					System.out.println(sesOiseaux.get(i).sonCorps.getyInit() + "= y");
+//					System.out.println(sesOiseaux.get(i).sonCorps.getxFinal() + "= xFinal");
+//					System.out.println(sesOiseaux.get(i).sonCorps.getyFinal() + "= yFinal");
+//					comp.paint(comp.getGraphics());
+//					Thread.sleep(DELAY);
+//				}
+//			} 
+//			catch (InterruptedException e) {
+//			}
+//		}
+//	}
+	
+	public void debuterMouvement() {
+		for (int j = 1; j <= dureeJeu; j++) {
+			for (int i = 0; i < sesOiseaux.size(); i++){
+				comp.add(this.sesOiseaux.get(i).sonCorps);
+				this.sesOiseaux.get(i).definirVitesse();
+	//			sesOiseaux.get(i).sonCorps.deplacer(sesOiseaux.get(i).definirVitesse());
+				sesOiseaux.get(i).sonCorps.deplacer(5);
+				this.sesOiseaux.get(i).faireEvoluer();
+		
+				System.out.println(sesOiseaux.get(i).sonCorps.getxInit() + "= x");
+				System.out.println(sesOiseaux.get(i).sonCorps.getyInit() + "= y");
+				System.out.println(sesOiseaux.get(i).sonCorps.getxFinal() + "= xFinal");
+				System.out.println(sesOiseaux.get(i).sonCorps.getyFinal() + "= yFinal");
 				comp.paint(comp.getGraphics());
-				Thread.sleep(DELAY);
+				try {
+					Thread.sleep(DELAY);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
 			}
-		} catch (InterruptedException e) {
 		}
 	}
+		
+
 	
 	class ComposantDeplacement extends JPanel {
 		
@@ -100,15 +131,4 @@ class ScreenAWT extends JFrame {
 
 	}
 
-	
-
-	
-	public static void main(String[] args) {
-		
-		JFrame frame = new ScreenAWT();
-//		PointDeplaceable b1 = new PointDeplaceable(20, 20, 100, 100);
-//		frame.add(b1);
-//		System.out.println(b1.getX() + " = x");
-		
-	}	
 }
