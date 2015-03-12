@@ -12,7 +12,12 @@ public class Oeuf implements Statut {
 	}
 
 	public void deplacement() {
+<<<<<<< HEAD
 		deplacement();
+=======
+		super.deplacement();
+		this.vitesse = VITESSE_MIN;	
+>>>>>>> refs/remotes/origin/dev
 	}
 	
 	public boolean isReproductionOK(Animal a) {

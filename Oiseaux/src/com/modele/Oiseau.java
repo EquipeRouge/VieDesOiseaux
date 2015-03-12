@@ -16,6 +16,7 @@ public class Oiseau extends Animal {
 	{ // commun aux constructeurs
 		this.sexe = this.setSexe();
 		this.dureeDeVie = this.calculDureeDeVie();
+<<<<<<< HEAD
 		this.age = 0;
 		this.statut = new Oeuf(this);
 	}
@@ -24,11 +25,24 @@ public class Oiseau extends Animal {
 	public Oiseau() {
 
 		this.parents = Parents.addParents(null, null);
+=======
+		this.famille = new Famille();
+		this.statut = new Oeuf();
+>>>>>>> refs/remotes/origin/dev
 	}
+<<<<<<< HEAD
 
 	public Oiseau(Oiseau pere, Oiseau mere) {
 
 		this.parents = Parents.addParents(pere, mere);
+=======
+	
+	Oiseau(Famille pere, Famille mere){
+		this.sexe = this.setSexe();
+		this.dureeDeVie = this.calculDureeDeVie();
+		this.famille = new Famille(this,pere, mere);
+		this.statut = new Oeuf();	
+>>>>>>> refs/remotes/origin/dev
 	}
 
 	public void showStatut() {
@@ -57,6 +71,7 @@ public class Oiseau extends Animal {
 	// }
 	void deplacement() {
 		super.deplacement();
+<<<<<<< HEAD
 	}
 
 	// En attente création méthode isInceste pour finaliser
@@ -124,4 +139,8 @@ public class Oiseau extends Animal {
 		this.grandir(false);
 		this.showStatut();
 	} // void
+=======
+	};
+	
+>>>>>>> refs/remotes/origin/dev
 }

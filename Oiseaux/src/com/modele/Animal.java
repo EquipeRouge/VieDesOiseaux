@@ -2,7 +2,7 @@ package com.modele;
 
 import java.util.*;
 
-import com.ressources.Parents;
+import com.ressources.*;
 
 public abstract class Animal {
 	
@@ -22,9 +22,15 @@ public abstract class Animal {
 	double newCoordonneeX;
 	double newCoordonneeY;
 	int vitesse;
-	Parents parents;
+	Famille famille;
 	
+<<<<<<< HEAD
 	boolean isReproductible=false;
+=======
+	boolean isReproductible = false;
+	
+	List<Animal> enfants;
+>>>>>>> refs/remotes/origin/dev
 	
 	Sexe sexe; 
 	
@@ -49,6 +55,7 @@ public abstract class Animal {
 		}
 		return Sexe.MALE;
 	}
+<<<<<<< HEAD
 	
 //	protected boolean isParents(Animal b){
 //		return (this.pere == b || this.mere == b);	
@@ -74,5 +81,7 @@ public abstract class Animal {
 	abstract List<Animal> seReproduire(Animal a);
 	
 	
+=======
+>>>>>>> refs/remotes/origin/dev
 	
 }
