@@ -6,7 +6,7 @@ import com.ressources.*;
 
 public abstract class Animal {
 
-	final static double DUREE_DE_VIE_MAX = 1000;
+	final static double DUREE_DE_VIE_MAX = 1500;
 	final static double DUREE_DE_VIE_MIN = 0;
 
 	final static int HIGHERX = 750;

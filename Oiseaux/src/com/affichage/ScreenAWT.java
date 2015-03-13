@@ -19,11 +19,11 @@ import com.ressources.PointDeplaceable;
 public class ScreenAWT extends JFrame {
 	
 	private static final long serialVersionUID = 1L;
-	public static final int DELAY = 30;
+	public static final int DELAY = 5;
 	
-	public static int screenX= 600;
+	public static int screenX= 650;
 	public static int screenY = 800;
-	public static int dureeJeu = 4000;
+	public static int dureeJeu = 2000;
 	
 	private ComposantDeplacement comp;
 	
@@ -89,16 +89,16 @@ public class ScreenAWT extends JFrame {
 	public void debuterMouvement() {
 		for (int j = 1; j <= dureeJeu; j++) {
 			for (int i = 0; i < sesOiseaux.size(); i++){
+				
 				comp.add(this.sesOiseaux.get(i).sonCorps);
 				this.sesOiseaux.get(i).definirVitesse();
-	//			sesOiseaux.get(i).sonCorps.deplacer(sesOiseaux.get(i).definirVitesse());
 				sesOiseaux.get(i).sonCorps.deplacer(5);
 				this.sesOiseaux.get(i).faireEvoluer();
 		
 				System.out.println(sesOiseaux.get(i).sonCorps.getxInit() + "= x");
 				System.out.println(sesOiseaux.get(i).sonCorps.getyInit() + "= y");
-				System.out.println(sesOiseaux.get(i).sonCorps.getxFinal() + "= xFinal");
-				System.out.println(sesOiseaux.get(i).sonCorps.getyFinal() + "= yFinal");
+//				System.out.println(sesOiseaux.get(i).sonCorps.getxFinal() + "= xFinal");
+//				System.out.println(sesOiseaux.get(i).sonCorps.getyFinal() + "= yFinal");
 				comp.paint(comp.getGraphics());
 				try {
 					Thread.sleep(DELAY);
@@ -125,6 +125,7 @@ public class ScreenAWT extends JFrame {
 			super.paintComponent(g); // erase background
 			Graphics2D g2 = (Graphics2D) g;
 			for (PointDeplaceable ptd : points) {
+				g2.setColor(Color.RED);
 				g2.fill(ptd.getForme());
 			}
 		}
