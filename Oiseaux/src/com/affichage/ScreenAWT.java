@@ -8,18 +8,21 @@ import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import com.modele.Animal;
 import com.modele.Oiseau;
 import com.ressources.PointDeplaceable;
 
 public class ScreenAWT extends JFrame {
 	
 	private static final long serialVersionUID = 1L;
-	public static final int DELAY = 30;
+	public static final int DELAY = 15;
 	
 	public static int screenX= 600;
 	public static int screenY = 800;
@@ -58,7 +61,7 @@ public class ScreenAWT extends JFrame {
 	
 	ActionListener demarrer = new ActionListener() {
 		public void actionPerformed(ActionEvent event) {
-			debuterMouvement();
+			debuterMouvement(sesOiseaux);
 		}
 	};
 	
@@ -86,15 +89,49 @@ public class ScreenAWT extends JFrame {
 //		}
 //	}
 	
-	public void debuterMouvement() {
+	public void debuterMouvement(ArrayList<Oiseau> pOiseaux) {
 		for (int j = 1; j <= dureeJeu; j++) {
-			for (int i = 0; i < sesOiseaux.size(); i++){
-				comp.add(this.sesOiseaux.get(i).sonCorps);
-				this.sesOiseaux.get(i).definirVitesse();
+			for (int i = 0; i < pOiseaux.size(); i++){
+				comp.add(pOiseaux.get(i).sonCorps);
+				pOiseaux.get(i).definirVitesse();
 	//			sesOiseaux.get(i).sonCorps.deplacer(sesOiseaux.get(i).definirVitesse());
-				sesOiseaux.get(i).sonCorps.deplacer(5);
-				this.sesOiseaux.get(i).faireEvoluer();
-		
+				pOiseaux.get(i).sonCorps.deplacer(5);
+				pOiseaux.get(i).faireEvoluer();
+
+				Iterator<Oiseau> nItr = pOiseaux.iterator();
+				while (nItr.hasNext()) {
+					Oiseau nOiseau = nItr.next();
+					if(!nOiseau.equals(pOiseaux.get(i))){
+						
+						double nMarge= 10.0;
+						while(true){
+							double nX= pOiseaux.get(i).sonCorps.getxInit();
+							double nXmin= (nX <= nMarge)? 0 : nX-nMarge;
+							double nXmax= nX+nMarge;
+
+							double nY= pOiseaux.get(i).sonCorps.getyInit();
+							double nYmin= (nY <= nMarge)? 0 : nY-nMarge;
+							double nYmax= nY+nMarge;
+							
+							if((nOiseau.sonCorps.getxInit()<nXmin) && (nOiseau.sonCorps.getxInit()<nXmax)) break;
+							
+							if((nOiseau.sonCorps.getyInit()<nYmin) && (nOiseau.sonCorps.getyInit()<nYmax)) break;
+
+							ArrayList<Oiseau> nNaissance= new ArrayList<Oiseau>();
+							nNaissance= pOiseaux.get(i).getStatut().seReproduire(nOiseau);
+
+							debuterMouvement(nNaissance);
+//							Iterator<Oiseau> nOeuf = nNaissance.iterator();
+//							while (nOeuf.hasNext()) {
+//								sesOiseaux.add(nOeuf.next());
+//							} // while
+
+							break;
+						} // while
+
+					}
+				} // while
+				
 				System.out.println(sesOiseaux.get(i).sonCorps.getxInit() + "= x");
 				System.out.println(sesOiseaux.get(i).sonCorps.getyInit() + "= y");
 				System.out.println(sesOiseaux.get(i).sonCorps.getxFinal() + "= xFinal");

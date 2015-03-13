@@ -18,13 +18,13 @@ public class Famille {
 
 	} //constructeurs
 	
-	public Famille(Object enfant){
-		vide= false;
-		this.enfant= enfant;
-		
-		pere= new Famille();
-		mere= new Famille();
-	} //constructeurs
+//	public Famille(Object enfant){
+//		vide= false;
+//		this.enfant= enfant;
+//		
+//		pere= new Famille();
+//		mere= new Famille();
+//	} //constructeurs
 
 	public Famille(Object enfant, Famille pere, Famille mere){
 		vide= false;
@@ -103,17 +103,17 @@ public class Famille {
 		return nReturn;
 	} // boolean
 	
-	public static void main(String[] args) {
-		Famille nfilsGauche= new Famille("aa", new Famille("bb"), new Famille("cc"));
-		Famille nfilsDroit= new Famille("dd", new Famille("ee"), new Famille("ff"));
-		Famille nGauche= new Famille("gg", nfilsGauche, nfilsDroit);
-		Famille nDroit= new Famille("hh", new Famille("ii"), new Famille("jj"));
-		Famille nArbreA= new Famille("kk", nGauche, nDroit);
-		
-		Famille nArbreX= new Famille("mm", nfilsGauche, new Famille("nn"));
-//		Famille nArbreX= new Famille("mm", new Famille("xx"), new Famille("nn"));
-		Famille nArbreB= new Famille("zz", nArbreX, new Famille("yy"));
-
-		System.out.println((nArbreB.isInceste(nArbreA, 12))? "inceste": "ok");
-	}
+//	public static void main(String[] args) {
+//		Famille nfilsGauche= new Famille("aa", new Famille("bb"), new Famille("cc"));
+//		Famille nfilsDroit= new Famille("dd", new Famille("ee"), new Famille("ff"));
+//		Famille nGauche= new Famille("gg", nfilsGauche, nfilsDroit);
+//		Famille nDroit= new Famille("hh", new Famille("ii"), new Famille("jj"));
+//		Famille nArbreA= new Famille("kk", nGauche, nDroit);
+//		
+//		Famille nArbreX= new Famille("mm", nfilsGauche, new Famille("nn"));
+////		Famille nArbreX= new Famille("mm", new Famille("xx"), new Famille("nn"));
+//		Famille nArbreB= new Famille("zz", nArbreX, new Famille("yy"));
+//
+//		System.out.println((nArbreB.isInceste(nArbreA, 12))? "inceste": "ok");
+//	}
 }

@@ -1,5 +1,6 @@
 package com.modele;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Oeuf implements Statut {
@@ -27,9 +28,9 @@ public class Oeuf implements Statut {
 		return false;
 	}
 
-	public List<Animal> seReproduire(Animal a) {
+	public ArrayList<Oiseau> seReproduire(Oiseau a) {
 
-		return null;
+		return new ArrayList<Oiseau>();
 	}
 
 	// Méthode permettant de gérer l'éclosion

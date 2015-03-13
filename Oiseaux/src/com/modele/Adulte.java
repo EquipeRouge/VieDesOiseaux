@@ -16,28 +16,29 @@ public class Adulte implements Statut {
 
 	// En attente création méthode isInceste pour finaliser
 	public boolean isReproductionOK(Animal a) {
-		if (this.oiseau.sexe == a.sexe)
-			return false;
-		// if ( ! this.oiseau.isInceste(a) ) return false;
-		if (!this.oiseau.isReproductible)
-			return false;
-		if (!(a.isReproductible))
-			return false;
+//		if (this.oiseau.sexe == a.sexe)
+//			return false;
+//		// if ( ! this.oiseau.isInceste(a) ) return false;
+//		if (!this.oiseau.isReproductible)
+//			return false;
+//		if (!(a.isReproductible))
+//			return false;
 		return true;
 	}
 
-	public List<Animal> seReproduire(Animal a) {
+	public ArrayList<Oiseau> seReproduire(Oiseau a) {
 		if (!isReproductionOK(a)) {
 			throw new IllegalArgumentException("je peux pas dsl");
 		}
 
 		Random generateur = new Random();
-		List<Animal> oeufs = new ArrayList<Animal>();
+		ArrayList<Oiseau> oeufs = new ArrayList<Oiseau>();
 
 		int rand = generateur.nextInt(this.oiseau.getMaxOeufs() - 1);
 		rand++;
 		for (int i = 0; i < rand; i++) {
-			oeufs.add(new Oiseau(this.oiseau, (Oiseau) a));
+			//oeufs.add(new Oiseau(this. oiseau, (Oiseau) a));
+			oeufs.add(new Oiseau(oiseau.getFamille(), ((Oiseau)(a)).getFamille()));
 		}
 		return oeufs;
 	}

@@ -1,6 +1,7 @@
 package com.modele;
 import com.ressources.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.ressources.Famille;
@@ -11,50 +12,42 @@ public class Oiseau extends Animal {
 	private static final int MAX_OEUFS = 5;
 	final static int VITESSE_MIN = 0;
 	final static int VITESSE_MOY = 1;
-	final static int VITESSE_MAX = 2;
+	final static int VITESSE_MAX = 3;
 
 	Statut statut;
 
-	Sexe getSex() {
-		return sexe;
-	}
-
 	{ // commun aux constructeurs
-		this.sexe = this.setSexe();
+		this.age = 0;
 		this.dureeDeVie = this.calculDureeDeVie();
 
-		this.age = 0;
+		this.sexe = this.setSexe();
 		this.statut = new Oeuf(this);
 		
+		sonCorps = new PointDeplaceable(xInit, yInit, xFinal, yFinal);
 	}
 
-	// Constructeur
+	// Constructeurs
 	public Oiseau() {
 		this.famille = new Famille();
-		this.statut = new Oeuf(this);
-		sonCorps = new PointDeplaceable(xInit, yInit, xFinal, yFinal);
+	} // constructeur
 
-	}
-	
-
-
-	Oiseau(Oiseau pere, Oiseau mere) {
-
-	}
-
-	Oiseau(Famille pere, Famille mere) {
-		this.sexe = this.setSexe();
-		this.dureeDeVie = this.calculDureeDeVie();
+	public Oiseau(Famille pere, Famille mere) {
 		this.famille = new Famille(this, pere, mere);
-		this.statut = new Oeuf(this);
-
-	}
+	} // constructeur
 
 
 	public void showStatut() {
 		System.out.println(this.statut);
-	}
+	} // void
 
+	public Sexe getSex() {
+		return sexe;
+	} // Sexe
+
+	public Famille getFamille() {
+		return this.famille;
+	} // Famille
+	
 	public Statut getStatut() {
 		return statut;
 	}
@@ -83,12 +76,12 @@ public class Oiseau extends Animal {
 		}
 	}
 
-	boolean isSexeOk(final Animal unAnimal) {
+	public boolean isSexeOk(final Animal unAnimal) {
 		return this.sexe != unAnimal.sexe;
 	}
 
 	// En attente création méthode isInceste pour finaliser
-	boolean isReproductionOK(Animal a) {
+	public boolean isReproductionOK(Animal a) {
 		if (!isSexeOk(a))
 			return false;
 		// if ( ! this.isInceste(a) ) return false;
@@ -99,7 +92,7 @@ public class Oiseau extends Animal {
 		return true;
 	}
 
-	protected List<Animal> seReproduire(Animal a) {
+	public ArrayList<Oiseau> seReproduire(Oiseau a) {
 
 		return statut.seReproduire(a);
 	}
