@@ -1,196 +1,119 @@
 package com.ressources;
-import com.modele.Animal;
+
+import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Famille {
+
 	private Object enfant;
 	private Famille pere;
 	private Famille mere;
-	private boolean Vide;
-	private int indice;
-	
-	// CONSTRUCTEURS 
+	private boolean vide;
+
+	//--------------------------------
+	// constructeurs
+	//--------------------------------
 	public Famille(){
-		this.Vide = true;
-	}
+		vide= true;
+
+	} //constructeurs
 	
 	public Famille(Object enfant){
-		this.enfant = enfant;
-		this.Vide = false;
-		this.pere = new Famille();
-		this.mere = new Famille();
-	}
-	
+		vide= false;
+		this.enfant= enfant;
+		
+		pere= new Famille();
+		mere= new Famille();
+	} //constructeurs
+
 	public Famille(Object enfant, Famille pere, Famille mere){
-		this.enfant = enfant;
-		this.pere = pere;
-		this.mere = mere;
-		this.Vide = false;
-	}
-	
-	// ARBRE VIDE
-	public boolean isVide(){
-		return this.Vide;
-	}
-	
-	// RACINE
-	public Object getEnfant(){
-		return this.enfant;
-	}
-	
-	// FILS GAUCHE
-	public Famille getPere(){
-		return this.pere;
-	}
-	
-	// FILS DROIT
-	public Famille getMere(){
-		return this.mere;
-	}
-	
-	// INDICE
-	public int getIndice(){
-		return this.indice;
-	}
-	
-	public void setIndice(int ind){
-		this.indice = ind;
-	}
-	
-	private boolean recherche(Object object){
-		if (this.Vide){
-			return false;
-		}
-		if (this.enfant == object){
-			return true;		
-		}else{
-			return (this.pere.recherche(object) || this.mere.recherche(object));
-		}
-	}
-	
-	// RECHERCHE EN LARGEUR
-	private boolean rechercheAvecIndice(Object object, int i){
-		if(this.Vide){
-			return false;
-		}
-		
-		if(i==0){
-			return false;
-		}
-		
-		if (this.enfant == object){
-			return true;		
-		}else{
-			i--;
-			return (this.pere.rechercheAvecIndice(object, i) || this.mere.rechercheAvecIndice(object, i));
-		}
-	}
-	
-	// VERIFICATION DE L'INCESTE
-	public boolean isInceste(Animal animal){
-		return this.recherche(animal) && this.rechercheAvecIndice(animal, indice);
-	}
-	
-	
-//	// AFFICHAGE 
-//	private void afficheInfixe(){
-//		if (!(this.Vide)){
-//			this.pere.afficheInfixe();
-//			System.out.print(this.enfant);
-//			this.mere.afficheInfixe();
-//		}
-//	}
-//	
-//	private void affichePrefixe(){
-//		if (!(this.Vide)){
-//			System.out.print(this.enfant);
-//			this.pere.affichePrefixe();
-//			this.mere.affichePrefixe();
-//		}
-//	}
-//	
-//	private void afficheSuffixe(){
-//		if (!(this.Vide)){
-//			this.pere.afficheSuffixe();
-//			this.mere.afficheSuffixe();
-//			System.out.print(this.enfant);
-//		}
-//	}
-//	
-//	private void affichePar(){
-//		if (!(this.Vide)){
-//			System.out.print("(");
-//			this.pere.affichePar();
-//			System.out.print(this.enfant);
-//			this.mere.affichePar();
-//			System.out.print(")");
-//		}
-//	}
-	
-	// AFFICHER EN ARBRE
-//	private void afficheArb(int d){
-//		if (!(this.Vide)){
-//			
-//			this.mere.afficheArb(d + 1);
-//			for (int i = 0; i< d;i++){
-//				System.out.print("   ");
-//			}
-//			System.out.print(this.enfant);
-//			System.out.println();
-//			this.pere.afficheArb(d + 1);
-//		}
-//	}
-//	
-//	private void afficheLignes(){
-//		if (!(this.Vide)){
-//			this.afficheArb(0);
-//		}
-//	}
-	
-	// RECHERCHE ASCENDANTS
+		vide= false;
+		this.enfant= enfant;
 
-//	// COMPTE LES SOMMETS
-//	private int compteSommets(){
-//		if (this.Vide){
-//			return 0;
-//		}else {
-//			return 1 + this.pere.compteSommets() + this.mere.compteSommets();
-//		}
-//	}
-//	
-//	// NOMBRE DE FEUILLES
-//	private int nbFeuilles(){
-//		if (this.Vide){
-//			return 0;
-//		}else{
-//			if (this.pere.Vide && this.mere.Vide){
-//				return 1;
-//			}else{
-//				return this.pere.nbFeuilles() + this.mere.nbFeuilles();
-//			}
-//		}
-//	}
-//	
-//	// NOMBRE DE NOEUDS
-//	private int nbNI(){
-//		if(this.Vide){
-//			return -1;
-//		}else{
-//			return this.nbNoeudsInt();
-//		}
-//	}
-//
-//	private int nbNoeudsInt(){
-//		if (this.Vide){
-//			return 0;
-//		}else{
-//			if(this.pere.Vide && this.mere.Vide){
-//				return 0;
-//			}else{
-//				return 1 + this.pere.nbNoeudsInt() + this.mere.nbNoeudsInt();
-//			}
-//		}
-//	}
+// attention à la gestion du sexe
+		this.pere= pere;
+		this.mere= mere;
+	} //constructeurs
 	
 
+	private void arbreToListeAvecRang(ArrayList<Object> pList, int pRang){
+		if(!vide){
+
+			pList.add(enfant);
+			if(pRang >= 1){
+				pRang--;
+				pere.arbreToListeAvecRang(pList, pRang);
+				mere.arbreToListeAvecRang(pList, pRang);
+			}
+		} //if
+	} // void
+
+	private void arbreToListe(ArrayList<Object> pList){
+		if(!vide){
+
+			pList.add(enfant);
+			pere.arbreToListe(pList);
+			mere.arbreToListe(pList);
+		} //if
+	} // void
+
+	public boolean isInceste(Famille pFamille, int pRang){
+		
+		boolean nReturn= true;
+		while(true){
+			if(this.chercherEnfantDansListe(pFamille.enfant)) break;
+			
+			if(pFamille.chercherEnfantDansListe(this.enfant)) break;
+			
+			if(this.incesteAvecRang(pFamille, pRang)) break;
+			
+			nReturn= false;
+			break;
+		} // while
+
+		return nReturn;
+	} // boolean
 	
+	private boolean chercherEnfantDansListe(Object pEnfant){
+
+		ArrayList<Object> nList= new ArrayList<Object>();
+		this.arbreToListe(nList);
+
+		return (nList.contains(pEnfant));
+	} // boolean
+
+	private boolean incesteAvecRang(Famille pFamille, int pRang){
+		boolean nReturn= false;
+		
+		ArrayList<Object> nListA= new ArrayList<Object>();
+		ArrayList<Object> nListB= new ArrayList<Object>();
+
+		this.arbreToListeAvecRang(nListA, pRang);
+		pFamille.arbreToListeAvecRang(nListB, pRang);
+
+		Iterator<Object> nItr = nListA.iterator();
+		while (nItr.hasNext()) {
+			Object nStr = nItr.next();
+			
+			nReturn= (nListB.contains(nStr));
+			if(nReturn) break;
+
+		} // while
+		
+		return nReturn;
+	} // boolean
+	
+	public static void main(String[] args) {
+		Famille nfilsGauche= new Famille("aa", new Famille("bb"), new Famille("cc"));
+		Famille nfilsDroit= new Famille("dd", new Famille("ee"), new Famille("ff"));
+		Famille nGauche= new Famille("gg", nfilsGauche, nfilsDroit);
+		Famille nDroit= new Famille("hh", new Famille("ii"), new Famille("jj"));
+		Famille nArbreA= new Famille("kk", nGauche, nDroit);
+		
+		Famille nArbreX= new Famille("mm", nfilsGauche, new Famille("nn"));
+//		Famille nArbreX= new Famille("mm", new Famille("xx"), new Famille("nn"));
+		Famille nArbreB= new Famille("zz", nArbreX, new Famille("yy"));
+
+		System.out.println((nArbreB.isInceste(nArbreA, 12))? "inceste": "ok");
+	}
 }

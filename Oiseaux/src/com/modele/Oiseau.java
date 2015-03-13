@@ -1,4 +1,5 @@
 package com.modele;
+import com.ressources.*;
 
 import java.util.List;
 
