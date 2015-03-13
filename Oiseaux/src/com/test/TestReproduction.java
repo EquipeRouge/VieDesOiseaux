@@ -43,7 +43,7 @@ public class TestReproduction {
 		Oiseau oiseauFemelle = creerOiseau(Sexe.FEMELLE);
 		Oiseau oiseauMale = creerOiseau(Sexe.MALE);
 		
-		assertFalse(oiseauMale.isReproductionOK(oiseauFemelle));
+		assertFalse(oiseauMale.getStatut().isReproductionOK(oiseauFemelle));
 	}
 	@Test
 	public void testReproductionEntrePoussin()
@@ -53,7 +53,7 @@ public class TestReproduction {
 		
 		oiseauFemelle.grandir(true);
 		oiseauMale.grandir(true);
-		assertFalse(oiseauMale.isReproductionOK(oiseauFemelle));
+		assertFalse(oiseauMale.getStatut().isReproductionOK(oiseauFemelle));
 	}
 	@Test
 	public void testReproductionEntreAdulte()
@@ -66,7 +66,7 @@ public class TestReproduction {
 		oiseauFemelle.grandir(true);
 		oiseauMale.grandir(true);
 		
-		assertTrue(oiseauMale.isReproductionOK(oiseauFemelle));
+		assertTrue(oiseauMale.getStatut().isReproductionOK(oiseauFemelle));
 	}
 	
 	@Test
@@ -79,7 +79,7 @@ public class TestReproduction {
 		oiseauFemelle.grandir(true);
 		oiseauMale.grandir(true);
 		
-		assertFalse(oiseauMale.isReproductionOK(oiseauFemelle));
+		assertFalse(oiseauMale.getStatut().isReproductionOK(oiseauFemelle));
 	}
 	@Test
 	public void testReproductionEntreAdulteEtMort()
@@ -93,7 +93,7 @@ public class TestReproduction {
 		oiseauFemelle.grandir(true);
 		oiseauFemelle.grandir(true);
 				
-		assertFalse(oiseauMale.isReproductionOK(oiseauFemelle));
+		assertFalse(oiseauMale.getStatut().isReproductionOK(oiseauFemelle));
 	}
 	
 	
