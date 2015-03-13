@@ -1,4 +1,4 @@
-package com.modele;
+package com.test;
 
 public class TestEvoluer {
 

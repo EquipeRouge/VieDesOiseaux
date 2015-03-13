@@ -1,4 +1,4 @@
-package com.ressources;
+package com.modele;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -6,8 +6,8 @@ import java.util.Iterator;
 public class Famille {
 
 	private Object enfant;
-	private Famille pere;
-	private Famille mere;
+	private Famille parentA;
+	private Famille parentB;
 	private boolean vide;
 
 	//--------------------------------
@@ -16,24 +16,15 @@ public class Famille {
 	public Famille(){
 		vide= true;
 
-	} //constructeurs
-	
-//	public Famille(Object enfant){
-//		vide= false;
-//		this.enfant= enfant;
-//		
-//		pere= new Famille();
-//		mere= new Famille();
-//	} //constructeurs
+	} //constructeur
 
-	public Famille(Object enfant, Famille pere, Famille mere){
+	public Famille(Object enfant, Famille parentA, Famille parentB){
 		vide= false;
 		this.enfant= enfant;
 
-// attention à la gestion du sexe
-		this.pere= pere;
-		this.mere= mere;
-	} //constructeurs
+		this.parentA= parentA;
+		this.parentB= parentB;
+	} //constructeur
 	
 
 	private void arbreToListeAvecRang(ArrayList<Object> pList, int pRang){
@@ -42,8 +33,8 @@ public class Famille {
 			pList.add(enfant);
 			if(pRang >= 1){
 				pRang--;
-				pere.arbreToListeAvecRang(pList, pRang);
-				mere.arbreToListeAvecRang(pList, pRang);
+				parentA.arbreToListeAvecRang(pList, pRang);
+				parentB.arbreToListeAvecRang(pList, pRang);
 			}
 		} //if
 	} // void
@@ -52,8 +43,8 @@ public class Famille {
 		if(!vide){
 
 			pList.add(enfant);
-			pere.arbreToListe(pList);
-			mere.arbreToListe(pList);
+			parentA.arbreToListe(pList);
+			parentB.arbreToListe(pList);
 		} //if
 	} // void
 
@@ -102,18 +93,4 @@ public class Famille {
 		
 		return nReturn;
 	} // boolean
-	
-//	public static void main(String[] args) {
-//		Famille nfilsGauche= new Famille("aa", new Famille("bb"), new Famille("cc"));
-//		Famille nfilsDroit= new Famille("dd", new Famille("ee"), new Famille("ff"));
-//		Famille nGauche= new Famille("gg", nfilsGauche, nfilsDroit);
-//		Famille nDroit= new Famille("hh", new Famille("ii"), new Famille("jj"));
-//		Famille nArbreA= new Famille("kk", nGauche, nDroit);
-//		
-//		Famille nArbreX= new Famille("mm", nfilsGauche, new Famille("nn"));
-////		Famille nArbreX= new Famille("mm", new Famille("xx"), new Famille("nn"));
-//		Famille nArbreB= new Famille("zz", nArbreX, new Famille("yy"));
-//
-//		System.out.println((nArbreB.isInceste(nArbreA, 12))? "inceste": "ok");
-//	}
-}
+} // class

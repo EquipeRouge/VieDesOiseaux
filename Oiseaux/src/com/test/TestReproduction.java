@@ -1,16 +1,19 @@
-package com.modele;
+package com.test;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import com.modele.Oiseau;
+import com.modele.Sexe;
+
 public class TestReproduction {
 
-	Oiseau creerOiseau(Sexe unSexe)
+	Oiseau creerOiseau(Sexe pSexe)
 	{
-		Oiseau temp = new Oiseau();
-		temp.sexe = unSexe;
-		return temp;
+		Oiseau nOiseau = new Oiseau();
+		nOiseau.setSexe(pSexe);
+		return nOiseau;
 	}
 	
 	@Test

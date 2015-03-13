@@ -6,25 +6,26 @@ import java.util.Random;
 
 public class Adulte implements Statut {
 
-	final static int VITESSE_MAX = 5;
+//	final static int RANG_FAMILLE = 5;
+	
 	Oiseau oiseau;
-
+	
+	// constructeur
 	public Adulte(Oiseau pOiseau) {
 		this.oiseau = pOiseau;
 	}
 
-
-	// En attente création méthode isInceste pour finaliser
 	public boolean isReproductionOK(Animal a) {
-//		if (this.oiseau.sexe == a.sexe)
-//			return false;
-//		// if ( ! this.oiseau.isInceste(a) ) return false;
-//		if (!this.oiseau.isReproductible)
-//			return false;
-//		if (!(a.isReproductible))
-//			return false;
+		if (this.oiseau.sexe == a.sexe) return false;
+			
+		if (this.oiseau.getFamille().isInceste(((Oiseau)a).getFamille(), this.oiseau.getRangFamille()) ) return false;
+		
+		if (!this.oiseau.isReproductible) return false;
+		
+		if (!(a.isReproductible)) return false;
+		
 		return true;
-	}
+	} // boolean
 
 	public ArrayList<Oiseau> seReproduire(Oiseau a) {
 		if (!isReproductionOK(a)) {
@@ -41,12 +42,10 @@ public class Adulte implements Statut {
 			oeufs.add(new Oiseau(oiseau.getFamille(), ((Oiseau)(a)).getFamille()));
 		}
 		return oeufs;
-	}
+	} // ArrayList<Oiseau>
 
-	// Méthode permettant de gérer le passage à mort
 	public void grandir(boolean vivre) {
 		oiseau.setStatut(new Mort(oiseau));
-
-	}
+	} // void
 
 }

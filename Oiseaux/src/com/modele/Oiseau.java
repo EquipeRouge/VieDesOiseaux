@@ -4,7 +4,6 @@ import com.ressources.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.ressources.Famille;
 import com.ressources.PointDeplaceable;
 
 public class Oiseau extends Animal {
@@ -13,6 +12,8 @@ public class Oiseau extends Animal {
 	final static int VITESSE_MIN = 0;
 	final static int VITESSE_MOY = 1;
 	final static int VITESSE_MAX = 3;
+	
+	final static int RANG_FAMILLE = 5;
 
 	Statut statut;
 
@@ -40,29 +41,36 @@ public class Oiseau extends Animal {
 		System.out.println(this.statut);
 	} // void
 
-	public Sexe getSex() {
+	public Sexe getSexe() {
 		return sexe;
 	} // Sexe
-
+	public void setSexe(Sexe pSexe) {
+		this.sexe= pSexe;
+	} // void
+	
 	public Famille getFamille() {
 		return this.famille;
 	} // Famille
 	
 	public Statut getStatut() {
 		return statut;
-	}
+	} // Statut
 
 	public void setStatut(Statut statut) {
 		this.statut = statut;
-	}
+	} // void
 
+	public int getRangFamille() {
+		return RANG_FAMILLE;
+	} // int
+	
 	public int getMaxOeufs() {
 		return MAX_OEUFS;
-	}
+	} // int
 
 	public void grandir(boolean vivre) {
 		statut.grandir(vivre);
-	}
+	} // void
 
 	public void definirVitesse(){
 		if((this.statut instanceof Oeuf) || (this.statut instanceof Mort)){
@@ -74,67 +82,36 @@ public class Oiseau extends Animal {
 		else{
 			this.sonCorps.vitesse = VITESSE_MAX;
 		}
-	}
+	} // void
 
 	public boolean isSexeOk(final Animal unAnimal) {
 		return this.sexe != unAnimal.sexe;
-	}
+	} // boolean
 
-	// En attente création méthode isInceste pour finaliser
-	public boolean isReproductionOK(Animal a) {
-		if (!isSexeOk(a))
-			return false;
-		// if ( ! this.isInceste(a) ) return false;
-		if (!this.isReproductible)
-			return false;
-		if (!(a.isReproductible))
-			return false;
-		return true;
-	}
-
+	
 	public ArrayList<Oiseau> seReproduire(Oiseau a) {
 
 		return statut.seReproduire(a);
-	}
-
-//	public void faireEvoluer() {
-//		while (this.age < this.dureeDeVie) {
-//
-//			switch (this.age) {
-//			case 30:
-//				this.grandir(true);
-//				break;
-//			case 120:
-//				this.grandir(true);
-//				break;
-//			case 180:
-//				this.grandir(true);
-//				break;
-//			}
-//			this.showStatut();
-//			age++;
-//		}
-//		this.grandir(false);
-//		this.showStatut();
-//	}
+	} // ArrayList<Oiseau>
 	
 	public void faireEvoluer() {
 		if (this.age < this.dureeDeVie) {
+			
+			switch(this.age){
+				case 40:
+				case 120:
+				case 180:
+					this.grandir(true);
+					break;
+			} // switch
 
-			if(this.age == 40) 
-				this.grandir(true);
-			if(this.age == 120)
-				this.grandir(true);
-			if(this.age == 180)
-				this.grandir(true);
-			this.showStatut();
+			//this.showStatut();
 			age++;
-		}
-		else{
+		}else{
 			this.grandir(false);
 			this.showStatut();
 		}
-}
+	} // void
 	
 	
 }
