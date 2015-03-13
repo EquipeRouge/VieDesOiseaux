@@ -47,6 +47,6 @@ public abstract class Animal {
 		return Sexe.MALE;
 	}
 
-	abstract List<Animal> seReproduire(Animal a);
+//	abstract List<Animal> seReproduire(Animal a);
 	
 }

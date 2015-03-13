@@ -1,5 +1,6 @@
 package com.modele;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Mort implements Statut {
@@ -15,9 +16,9 @@ public class Mort implements Statut {
 		return false;
 	}
 
-	public List<Animal> seReproduire(Animal a) {
+	public ArrayList<Oiseau> seReproduire(Oiseau a) {
 
-		return null;
+		return new ArrayList<Oiseau>();
 	}
 
 	public void grandir(boolean vivre) {
